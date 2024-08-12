@@ -1,6 +1,7 @@
-const express = require('express');
+const express = require("express")
 const app = express();
-const porta = 5001;
+const porta = 5000;
+let nome;
 
 let produtos = [
     {
@@ -10,6 +11,7 @@ let produtos = [
         imagem: "https://static.itdg.com.br/images/622-auto/4f610064276482e0bcd99903554fd2a8/shutterstock-2244178141.jpg"
     },
     {
+
         nome: "Chá de Erva Cidreira",
         valor: 15.50,
         descricao: "Ótimo chá de erva cidreira",
@@ -23,35 +25,22 @@ let produtos = [
     }
 ]
 
-app.get('/', (requisicao, resposta) => {
-    let queryUrl = requisicao.query;
-    return resposta.json(queryUrl).status(200);
-})
-
-app.get('/cha-erva-doce', (requisicao, resposta) => {
-    try {
+app.get('/produtos', (requisicao, resposta) => {
+    let produtosUrl = requisicao.query.nome;
+    
+    let pesquisa = produtosUrl.includes(requisicao.query.nome)
+    
+    if (pesquisa) {
         return resposta.json(produtos[0]).status(200);
-    } catch (error) {
-        return resposta.json({ message: "Não achamos seu chá." }).status(400);
-    }
-})
-
-app.get('/cha-erva-cidreira', (requisicao, resposta) => {
-    try {
+    } else if (produtosUrl == "erva-cidreira") {
         return resposta.json(produtos[1]).status(200);
-    } catch (error) {
-        return resposta.json({ message: "Não encontramos o chá!" }).status(400);
-    }
-})
-
-app.get('/cha-maracuja', (requisicao, resposta) => {
-    try {
+    } else if (produtosUrl == "maracuja") {
         return resposta.json(produtos[2]).status(200);
-    } catch (error) {
-        return resposta.json({ message: 'Não conseguimos encontrar o seu querido chá!' }).status(400);
+    } else {
+        return resposta.json(produtos).status(400);
     }
-
 })
+
 
 app.listen(porta, () => {
     console.log(`Servidor funcionando na rota ${porta}`)
