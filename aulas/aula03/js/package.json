@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "name": "js",
+  "version": "1.0.0",
+  "main": "server.js",
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
