@@ -1,0 +1,104 @@
+# Definindo rotas com Angular Routing
+
+### Criar uma pasta Angular
+	1 - ng new nome-do-programa -- no-standalone
+	2 - escolher css na pergunta
+	3 - negar a próxima pergunta
+//	deletar arquivos spec
+//	deletar favicon.icon (SITE: icons8.com.br)
+	
+### Criar componentes
+	ng component components/views/home (os que possuem barra são as pastas)
+	
+### Executar o app
+	g serve -o
+
+- Deletar tudo do html global.
+- Posso criar componentes a mão, mas vai ficar uma merda. 
+
+- Eu manipulo os arquivos de forma normal dentro do html, css, e depois eu os coloco dentro do html que eu quero. Como um import. **EX:****<app-barra></app-barra>** (arquivo barra dentro de algum outro arquivo que eu quero acoplar a tela).
+
+## Angular Routing (app-routing.module.ts)
+O que faz?
+- Cria rotas para ser renderizadas as páginas que eu quero. 	
+	
+	1 - Ir em app-routing.modules;
+	2 - Criar um objeto dentro de const routes;
+	3 - Criar um {"path: 'login', LoginComponent"} no routes do **app.routing.ts**; Assim que se cria as rotas que serão renderizadas depois de eu entrar;
+	4 - Dentro de app.component.html usar **<router-outlet>** para habilitar as rotas.
+	5 - Colocar <a routerLink = "/login">Login</a> no html de login para a o link direcionar para a Home da página. 
+	routerLink -> 
+- **navbar** fica em **shared**.
+
+- shared é uma pasta para componentes compartilhados.
+
+### Como criar variaveis e as chamar.
+
+	1 - (Dentro de ts -> export class) -> public nome: String = "Fulano";
+	2 - (Dentro do html) -> {{nome}}
+	3 - **any** é um array?
+**como chamar um array:**
+		
+		public produtos: any = []
+		
+		**um construtor com os elementos do array**
+		constructor(){
+		this.produtos.push({nome: 'bolo de morando', valor : 5000})
+		console.log(this.produtos)
+		}
+**(outra forma de criar um array)**
+	
+		public produtos: Array<Produto> = new Array<Produto>();
+	
+	**um construtor com os elementos do array**
+	
+		constructor(){
+		this.produtos.push(new Produto('bolo de morando', valor : 5000))
+		console.log(this.produtos)
+		}
+	(any é "qualquer coisa")
+		
+**(percorrendo array dentro do html)**
+	
+	(não existe na versão antiga)
+	1 - @for (produto of produtos; track $index){ 
+
+		<p>{{produto:nome}}</p>
+		<p>{{produto:valor}}</p>
+	}
+	2 - <alguma-tag *ngFor="let produto of produtos"; let i = index;>
+		<p>{{produto:nome}}</p>
+		<p>{{produto:valor}}</p>
+	</alguma-tag>
+	
+	### condicionais em angular (html)
+	
+		if(produto.nome === "bolo de morango"){
+		<p> ESGOTADO </P>
+		}@else{
+		<p>{{produto.valor}}</p>
+		}
+	
+		(forma antiga)
+		
+	<alguma-tag *ngIf="produto.nome != 'bolo de morango'">
+		<p>{{produto.nome}}</p>
+		<p>{{produto.valor}}</p>
+	
+	</alguma-tag>
+	
+	### Como criar classes
+		1 - Criar uma pasta models
+		2 - criar a classe com tudo minusculo no nome da classe
+		
+			public class Produto{
+			public nome!: string;
+			public valor!: number;
+			
+		**(nome! -> anuncia que o produto ainda vai receber um valor)**
+			
+			constructor (nome: string, valor:number){
+			this.nome = nome;
+			this.valor = valor;
+			}
+			

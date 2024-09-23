@@ -1,0 +1,17 @@
+.menu {
+  width: 100%;
+  background: black;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.menu a{
+  background-color: crimson;
+  color: white;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

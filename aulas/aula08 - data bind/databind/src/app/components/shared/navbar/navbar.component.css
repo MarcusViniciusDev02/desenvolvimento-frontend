@@ -1,0 +1,15 @@
+.menu{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.menu a{
+  font-size: 40px;
+  background: crimson;
+  color: #FFF;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
